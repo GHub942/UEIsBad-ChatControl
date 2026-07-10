@@ -53,15 +53,6 @@ Le chiffrement de vos messages ne sert à rien si le système d'exploitation de 
 
 ---
 
-## 🤝 Comment contribuer ?
-
-Vous souhaitez ajouter une astuce, mettre à jour le statut législatif ou corriger une information ? Les contributions sont les bienvenues !
-1. Forkez le projet.
-2. Créez une branche (`git checkout -b feature/AjoutAstuce`).
-3. Ouvrez une Pull Request.
-
----
-
 ## 🌍 Ressources utiles
 * [La Quadrature du Net](https://www.laquadrature.net/) (France)
 * [EFF (Electronic Frontier Foundation)](https://www.eff.org/) (International)
