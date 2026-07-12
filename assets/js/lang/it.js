@@ -105,6 +105,7 @@ window.I18N.it = {
       fpTitle: "Il problema della saturazione dei falsi positivi",
       mathP: "Sia <span class=\"math\">F<sub>p</sub></span> il tasso di falsi positivi di un classificatore automatizzato, applicato ai miliardi di messaggi scambiati ogni giorno nell'UE.",
       fpBody: "Anche un tasso di errore molto piccolo si amplifica su scala europea. I resoconti pubblici e le verifiche della società civile sull'attuale regime volontario rilevano ripetutamente che una larga parte delle segnalazioni automatizzate — spesso citata in una forbice che va da circa la metà a una larga maggioranza, a seconda del metodo di rilevamento e della piattaforma segnalante — risulta priva di rilevanza penale dopo la verifica umana. Un dato ampiamente riportato: la grande maggioranza delle segnalazioni effettuate nell'ambito del regime volontario proveniva da un'unica azienda, e la maggior parte riguardava materiale già catalogato piuttosto che abusi appena scoperti — il che pone la domanda su quanto abuso attivo il sistema catturi davvero rispetto a quante comunicazioni ordinarie espone a un controllo.",
+      rangeCaption: "Intervallo illustrativo delle segnalazioni automatizzate risultate, dopo verifica umana, prive di rilevanza penale — come riportato dagli audit, non una cifra ufficiale unica.",
       sourcesNote: "I dati sopra riassumono intervalli riportati da diverse verifiche, studi parlamentari e inchieste giornalistiche del 2025-2026; le percentuali esatte variano a seconda della fonte e sono indicate come intervalli piuttosto che come statistiche precise singole. Vedi la pagina «Passa all'azione» per le fonti primarie."
     }
   },
@@ -165,8 +166,8 @@ window.I18N.it = {
     gh: {
       title: "Battaglia collegata: l'Euro Digitale",
       body: "La scansione di massa delle comunicazioni non è l'unica battaglia per la sovranità digitale in corso a Bruxelles in questo momento. Un progetto open source collegato documenta i rischi dell'Euro Digitale proposto: moneta programmabile, tracciabilità delle transazioni ed erosione del contante come strumento di pagamento anonimo.",
-      note: "Repository non ancora pubblicato — il link resta qui in attesa della sua pubblicazione.",
-      linkLabel: "Vedi su GitHub: NoKs-Git/UEIsBad-DigitalEuro"
+      note: "Progetto indipendente, non affiliato all'autore di questo dossier.",
+      linkLabel: "Vedi su GitHub: GHub942/UEIsBad-DigitalEuro"
     },
     resources: {
       title: "Fonti primarie e approfondimenti",
@@ -184,7 +185,10 @@ window.I18N.it = {
     f2t: "Apple ci aveva già provato — e ha rinunciato", f2b: "Nel 2021 Apple aveva annunciato una scansione lato client dei CSAM per iCloud Photos. Il piano è stato abbandonato nel dicembre 2022 dopo che i ricercatori di sicurezza avevano dimostrato che il sistema di confronto degli hash poteva essere ingannato e riutilizzato per altri scopi.",
     f3t: "I sopravvissuti sono tra i critici più accesi", f3b: "Associazioni come MOGiS e.V. e sopravvissuti agli abusi come Alexander Hanff sostengono che la scansione di massa da parte delle aziende non ferma gli abusi — e che mette a rischio proprio i canali di comunicazione sicuri di cui i sopravvissuti hanno bisogno.",
     f4t: "Approvato in un'aula che si svuotava", f4b: "Il voto decisivo del 9 luglio 2026 è stato programmato per l'ultima seduta del Parlamento prima della pausa estiva, dopo che una procedura d'urgenza lo aveva portato avanti con appena 48 ore di preavviso — mentre molti eurodeputati avevano già lasciato Strasburgo.",
-    f5t: "In realtà una maggioranza vi si è opposta", f5b: "276 eurodeputati hanno votato per mantenere il ripristino; 314 hanno votato per respingerlo. Più eurodeputati volevano eliminarlo che mantenerlo — è sopravvissuto solo perché bloccare un atto in seconda lettura richiede la maggioranza assoluta di tutti i 720 seggi, non semplicemente la maggioranza dei voti espressi."
+    f5t: "In realtà una maggioranza vi si è opposta", f5b: "276 eurodeputati hanno votato per mantenere il ripristino; 314 hanno votato per respingerlo. Più eurodeputati volevano eliminarlo che mantenerlo — è sopravvissuto solo perché bloccare un atto in seconda lettura richiede la maggioranza assoluta di tutti i 720 seggi, non semplicemente la maggioranza dei voti espressi.",
+    f6t: "Signal ha minacciato di lasciare del tutto l'UE", f6b: "La presidente di Signal, Meredith Whittaker, ha più volte dichiarato che l'azienda preferirebbe ritirarsi dal mercato europeo piuttosto che integrare la scansione nella propria cifratura: «una backdoor in una parte di una rete è un vettore verso ogni altra parte».",
+    f7t: "Gli stessi dati della polizia tedesca mostrano la portata del problema dei falsi positivi", f7b: "I dati della polizia federale tedesca per il 2024 hanno registrato circa 99.000 chat private e foto di persone innocenti segnalate erroneamente nell'ambito dell'attuale regime di scansione volontaria — un aumento rispetto all'anno precedente. In Irlanda, solo una piccola parte delle segnalazioni automatizzate presentate nel 2022 riguardava realmente contenuti illegali.",
+    f8t: "Oltre 500 scienziati lo hanno definito «tecnicamente infattibile»", f8b: "In una lettera aperta, più di 500 crittografi e ricercatori di sicurezza di decine di paesi hanno avvertito che nessun sistema di apprendimento automatico può rilevare CSAM sconosciuto su vasta scala senza produrre un gran numero di errori — e che qualsiasi backdoor costruita per uno scopo diventa una vulnerabilità per tutti."
   },
   map: {
     title: "Come si posizionano i governi dell'UE?",
@@ -213,6 +217,49 @@ window.I18N.it = {
     haveYourSayTitle: "Preferisci un canale ufficiale?",
     haveYourSayBody: "Have Your Say è la piattaforma della Commissione europea per i riscontri pubblici sulle normative in corso di elaborazione — il canale a cui Europe Direct stessa rimanda i cittadini per far conoscere le proprie posizioni politiche sui temi europei.",
     haveYourSayLabel: "Apri Have Your Say"
+  },
+  apps: {
+    useTitle: "App consigliate",
+    avoidTitle: "App da evitare",
+    intro: "Una guida di riferimento rapida, raggruppata per categoria. Vedi i livelli a sinistra per il ragionamento dietro ogni scelta.",
+    categories: { messaging: "Messaggistica", cloud: "Archiviazione cloud", browser: "Browser", mobileos: "Sistema mobile", vpn: "VPN", dns: "DNS", appstore: "Store di app", email: "E-mail" },
+    use: [
+      { cat: "messaging", name: "Signal", note: "Scelta predefinita: open source, cifrato end-to-end, metadati minimi." },
+      { cat: "messaging", name: "Session", note: "Nessun numero di telefono richiesto, instradamento decentralizzato." },
+      { cat: "messaging", name: "Element / Matrix", note: "Federato, autoospitabile, cifrato tramite Olm/Megolm." },
+      { cat: "cloud", name: "Proton Drive", note: "Cifratura end-to-end a conoscenza zero, giurisdizione svizzera." },
+      { cat: "cloud", name: "Nextcloud (autoospitato)", note: "Controlli tu il server e le chiavi di cifratura." },
+      { cat: "browser", name: "Mullvad Browser", note: "Sviluppato con il Tor Project; resiste al fingerprinting." },
+      { cat: "browser", name: "Firefox (irrobustito)", note: "Open source, configurabile, senza collegamento forzato a un account." },
+      { cat: "mobileos", name: "GrapheneOS", note: "De-googlizzato, fork AOSP irrobustito, solo dispositivi Pixel." },
+      { cat: "mobileos", name: "CalyxOS", note: "Alternativa de-googlizzata con supporto più ampio dei dispositivi." },
+      { cat: "vpn", name: "Mullvad VPN", note: "Account anonimi, verificato in modo indipendente, WireGuard." },
+      { cat: "vpn", name: "IVPN", note: "Nessuna e-mail richiesta per l'iscrizione, rigorosa politica no-log, verificato." },
+      { cat: "dns", name: "Quad9", note: "Blocca domini dannosi noti, senza registrazione delle richieste." },
+      { cat: "dns", name: "NextDNS (autoconfigurato)", note: "Filtraggio personalizzato con log che controlli solo tu." },
+      { cat: "appstore", name: "F-Droid", note: "Catalogo esclusivamente FOSS, build riproducibili." },
+      { cat: "appstore", name: "Accrescent", note: "Store orientato alla sicurezza, permessi minimi per impostazione predefinita." },
+      { cat: "email", name: "Proton Mail", note: "Cifrato end-to-end per impostazione predefinita, giurisdizione svizzera." },
+      { cat: "email", name: "Tuta (Tutanota)", note: "Cifrato end-to-end per impostazione predefinita, client interamente open source." }
+    ],
+    avoid: [
+      { cat: "messaging", name: "WhatsApp", note: "Di proprietà di Meta; rientra nella scansione volontaria di Chat Control 1.0." },
+      { cat: "messaging", name: "Facebook Messenger", note: "Stessa esposizione alla scansione volontaria di WhatsApp." },
+      { cat: "messaging", name: "SMS / RCS (predefinito)", note: "Visibile all'operatore, senza cifratura end-to-end." },
+      { cat: "messaging", name: "Telegram (chat cloud)", note: "Non cifrato end-to-end per impostazione predefinita; le chat segrete non hanno sincronizzazione." },
+      { cat: "cloud", name: "iCloud (backup predefinito)", note: "Conserva copie delle chiavi dei messaggi a meno che non sia attiva la Protezione avanzata dei dati." },
+      { cat: "cloud", name: "Google Drive (predefinito)", note: "Scansionato lato server; non cifrato end-to-end." },
+      { cat: "cloud", name: "OneDrive (consumer, predefinito)", note: "Stessa esposizione alla scansione lato server." },
+      { cat: "browser", name: "Chrome (con accesso eseguito)", note: "Lega l'attività di navigazione a un account legato a un'identità." },
+      { cat: "browser", name: "Edge (predefinito)", note: "Telemetria intensa legata a un account Microsoft." },
+      { cat: "mobileos", name: "Android standard + Play Services", note: "Può ricevere in background moduli di scansione o telemetria." },
+      { cat: "mobileos", name: "iOS (per usi ad alto rischio)", note: "Livello di sistema operativo a codice chiuso, controllo utente limitato." },
+      { cat: "vpn", name: "VPN gratuite / non verificate", note: "Promesse «no-log» non verificabili; alcune monetizzano invece i dati." },
+      { cat: "dns", name: "DNS predefinito del provider", note: "Cronologia delle richieste visibile al provider, talvolta rivenduta." },
+      { cat: "appstore", name: "Play Store / App Store (strumenti sensibili)", note: "La distribuzione può essere monitorata, limitata geograficamente o alterata." },
+      { cat: "email", name: "Gmail", note: "Scansionato per progettazione a fini pubblicitari e di rilevamento abusi." },
+      { cat: "email", name: "Outlook.com (piano gratuito)", note: "Esposizione alla scansione lato server simile a Gmail." }
+    ]
   },
   footer: { text: "Dossier di sensibilizzazione tecnica e civica — ultima verifica il 10 luglio 2026. Condiviso con licenza Creative Commons CC BY 4.0. Non costituisce consulenza legale." }
 };

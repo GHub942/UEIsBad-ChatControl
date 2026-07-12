@@ -1,143 +1,150 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chat Control Dossier — Statut, technique &amp; protection</title>
-<meta name="description" content="Statut légal à jour de Chat Control 1.0 et 2.0, dossier technique, manuel de protection et actions citoyennes.">
+<title>ChatControl</title>
+<meta name="description" content="Chat Control Dossier — status, technical analysis, protection manual and civic action, in French, English, German, Italian and Spanish.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0d1321">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .lang-landing{
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(155deg, #0d1321 0%, #182236 55%, #0d1321 100%);
+    padding: 32px 20px;
+  }
+  .lang-landing::before{
+    content:""; position:fixed; inset:0; opacity:0.4; pointer-events:none;
+    background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 3px);
+  }
+  .lang-card{
+    position:relative; max-width:560px; width:100%; text-align:center;
+  }
+  .lang-stamp{
+    font-family: var(--mono); font-size:0.7rem; letter-spacing:2px; color: var(--gold);
+    text-transform:uppercase; display:inline-flex; align-items:center; gap:8px; margin-bottom:20px;
+  }
+  .lang-stamp::before{ content:""; width:8px; height:8px; border-radius:50%; background: var(--alert); box-shadow: 0 0 0 3px rgba(179,18,43,0.25); }
+  .lang-title{
+    font-family: var(--serif); font-weight:700; color:#efe9d6; font-size: clamp(1.5rem, 4vw, 2.1rem);
+    margin: 0 0 10px; min-height: 2.6em; transition: opacity .18s ease;
+  }
+  .lang-sub{
+    color:#aab0c2; font-size:0.95rem; margin: 0 0 34px; line-height:1.7; min-height: 3.4em;
+    transition: opacity .18s ease;
+  }
+  .lang-title.fading, .lang-sub.fading{ opacity:0; }
+  .lang-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+  @media (min-width: 480px){ .lang-grid{ grid-template-columns: 1fr 1fr 1fr; } }
+  .lang-option{
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.16); border-radius:5px;
+    padding: 20px 14px; text-decoration:none; transition: all .18s ease;
+  }
+  .lang-option:hover, .lang-option:focus-visible{ border-color: var(--gold); background: rgba(166,128,46,0.12); transform: translateY(-2px); }
+  .lang-option .flag{ font-size:1.7rem; line-height:1; }
+  .lang-option .native{ font-family: var(--serif); font-weight:700; color:#efe9d6; font-size:1.02rem; }
+  .lang-option .hint{ font-family: var(--mono); font-size:0.68rem; color:#8b91a6; letter-spacing:0.4px; }
+  .lang-option.suggested{ border-color: var(--gold); background: rgba(166,128,46,0.1); }
+  .lang-footer{ margin-top:30px; font-family: var(--mono); font-size:0.72rem; color:#6b7186; }
+  .lang-footer a{ color:#8b91a6; }
+</style>
 </head>
 <body>
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <a href="index.html" class="brand"><span data-i18n="brand.title">Dossier Chat Control</span><span class="stamp" data-i18n="brand.stamp">EN DIRECT</span></a>
-    <nav class="nav-links">
-      <a href="index.html" data-i18n="nav.home">Accueil</a>
-      <a href="status.html" data-i18n="nav.status">Statut légal</a>
-      <a href="dossier.html" data-i18n="nav.dossier">Dossier technique</a>
-      <a href="protection.html" data-i18n="nav.protection">Manuel de protection</a>
-      <a href="act.html" data-i18n="nav.act">Passer à l'action</a>
-    </nav>
-    <div class="lang-switch">
-      <button class="lang-btn" data-lang="fr">FR</button>
-      <button class="lang-btn" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="de">DE</button>
-      <button class="lang-btn" data-lang="it">IT</button>
-      <button class="lang-btn" data-lang="es">ES</button>
-    </div>
-  </div>
-</header>
-
-<div class="container page-wrap">
-
-  <section class="hero">
-    <span class="eyebrow" data-i18n="home.eyebrow">Mise à jour — 10 juillet 2026</span>
-    <h1 data-i18n="home.h1">Chat Control est de retour en vigueur</h1>
-    <p class="lead" data-i18n="home.lead">Le 9 juillet 2026, il a manqué 47 voix au Parlement européen…</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="act.html" data-i18n="home.ctaAct">Passer à l'action</a>
-      <a class="btn btn-ghost" href="status.html" data-i18n="home.ctaStatus">Lire le statut légal complet</a>
-    </div>
-
-    <div class="scoreboard reveal">
-      <div class="scoreboard-head">
-        <span class="title" data-i18n="home.score.title">Vote en plénière du Parlement européen — 9 juillet 2026</span>
-        <span class="date" data-i18n="home.score.date">720 sièges · 607 votes exprimés</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label" data-i18n="home.score.needLabel">Seuil pour bloquer</span>
-        <div class="bar-track"><div class="bar-fill need" data-value="50.1"></div></div>
-        <span class="bar-value">361</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label" data-i18n="home.score.rejectLabel">Ont voté pour rejeter</span>
-        <div class="bar-track"><div class="bar-fill reject" data-value="43.6"></div></div>
-        <span class="bar-value">314</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label" data-i18n="home.score.keepLabel">Ont voté contre le rejet</span>
-        <div class="bar-track"><div class="bar-fill keep" data-value="38.3"></div></div>
-        <span class="bar-value">276</span>
-      </div>
-      <p class="scoreboard-note" data-i18n-html="home.score.note">Note sur le seuil.</p>
-    </div>
-  </section>
-
-  <div class="card reveal">
-    <h2><span class="tag">01</span> <span data-i18n="home.summary.title">Ce qui s'est réellement passé, en trois points</span></h2>
-    <h3 data-i18n="home.summary.s1t">1 — « Chat Control 1.0 » est de retour</h3>
-    <p data-i18n="home.summary.s1b">…</p>
-    <h3 data-i18n="home.summary.s2t">2 — « Chat Control 2.0 » n'est pas passé</h3>
-    <p data-i18n="home.summary.s2b">…</p>
-    <h3 data-i18n="home.summary.s3t">3 — Pourquoi tant de gens disent que c'est passé</h3>
-    <p data-i18n="home.summary.s3b">…</p>
-  </div>
-
-  <div class="card reveal">
-    <h2><span class="tag">02</span> <span data-i18n="facts.title">Le saviez-vous ?</span></h2>
-    <div class="facts-grid" data-render="facts"></div>
-  </div>
-
-  <h2 style="font-family:var(--serif);text-align:center;margin:44px 0 8px;" data-i18n="home.cards.title">Explorer le dossier</h2>
-  <div class="grid-cards">
-    <a class="nav-card reveal" href="status.html">
-      <span class="nc-tag" data-i18n="home.cards.c1tag">01 · Statut légal</span>
-      <h3 data-i18n="home.cards.c1title">Chronologie &amp; double dossier</h3>
-      <p data-i18n="home.cards.c1body">…</p>
-    </a>
-    <a class="nav-card reveal" href="dossier.html">
-      <span class="nc-tag" data-i18n="home.cards.c2tag">02 · Dossier technique</span>
-      <h3 data-i18n="home.cards.c2title">Comment le scan fonctionne</h3>
-      <p data-i18n="home.cards.c2body">…</p>
-    </a>
-    <a class="nav-card reveal" href="protection.html">
-      <span class="nc-tag" data-i18n="home.cards.c3tag">03 · Manuel de protection</span>
-      <h3 data-i18n="home.cards.c3title">Trois niveaux de sécurité</h3>
-      <p data-i18n="home.cards.c3body">…</p>
-    </a>
-    <a class="nav-card reveal" href="act.html">
-      <span class="nc-tag" data-i18n="home.cards.c4tag">04 · Passer à l'action</span>
-      <h3 data-i18n="home.cards.c4title">Pétitions &amp; projets liés</h3>
-      <p data-i18n="home.cards.c4body">…</p>
-    </a>
-  </div>
-
-  <div class="card reveal" style="background:var(--ink); color:var(--paper-text); text-align:center; padding:46px 36px;">
-    <p class="redact-line" style="font-family:var(--serif); font-size:1.3rem; margin:0 0 6px;">
-      <span class="redact" data-i18n="home.redact.l1">Chaque message que vous envoyez.</span>
+<div class="lang-landing">
+  <div class="lang-card">
+    <span class="lang-stamp" id="lang-stamp">Chat Control Dossier</span>
+    <h1 class="lang-title" id="lang-title">Choose your language</h1>
+    <p class="lang-sub" id="lang-sub">
+      Legal status, technical dossier, protection manual and civic action.
     </p>
-    <p class="redact-line" style="font-family:var(--serif); font-size:1.3rem; margin:0 0 6px;">
-      <span class="redact" data-i18n="home.redact.l2">Chaque photo que vous partagez.</span>
-    </p>
-    <p class="redact-line" style="font-family:var(--serif); font-size:1.3rem; margin:0 0 14px;">
-      <span class="redact" data-i18n="home.redact.l3">Chaque fichier que vous stockez.</span>
-    </p>
-    <p style="font-family:var(--mono); font-size:0.8rem; color:var(--gold);" data-i18n="home.redact.caption">— sauf si vous agissez.</p>
+    <div class="lang-grid" id="lang-grid">
+      <a class="lang-option" data-lang="fr" href="home.html?lang=fr">
+        <span class="flag">🇫🇷</span><span class="native">Français</span><span class="hint">Continuer</span>
+      </a>
+      <a class="lang-option" data-lang="en" href="home.html?lang=en">
+        <span class="flag">🇬🇧</span><span class="native">English</span><span class="hint">Continue</span>
+      </a>
+      <a class="lang-option" data-lang="de" href="home.html?lang=de">
+        <span class="flag">🇩🇪</span><span class="native">Deutsch</span><span class="hint">Weiter</span>
+      </a>
+      <a class="lang-option" data-lang="it" href="home.html?lang=it">
+        <span class="flag">🇮🇹</span><span class="native">Italiano</span><span class="hint">Continua</span>
+      </a>
+      <a class="lang-option" data-lang="es" href="home.html?lang=es">
+        <span class="flag">🇪🇸</span><span class="native">Español</span><span class="hint">Continuar</span>
+      </a>
+    </div>
+    <p class="lang-footer">github.com/NoKs-Git — <span id="lang-footer-tagline">independent civic dossier</span></p>
   </div>
-
-  <div class="card reveal" style="text-align:center;">
-    <h2 style="justify-content:center; border-bottom:none;" data-i18n="home.finalCta.title">Le règlement permanent est toujours en négociation.</h2>
-    <p style="max-width:60ch; margin:0 auto 20px;" data-i18n="home.finalCta.body">…</p>
-    <a class="btn btn-primary" href="act.html" data-i18n="home.finalCta.btn">Voir comment agir</a>
-  </div>
-
 </div>
 
-<footer class="site-footer">
-  <div class="container">
-    <p data-i18n="footer.text">Dossier de sensibilisation technique et civique.</p>
-  </div>
-</footer>
+<script>
+(function () {
+  var TXT = {
+    fr: { title: 'Choisissez votre langue', sub: 'Statut légal, dossier technique, manuel de protection et actions citoyennes.', brand: 'Dossier Chat Control', footer: 'dossier civique indépendant' },
+    en: { title: 'Choose your language', sub: 'Legal status, technical dossier, protection manual and civic action.', brand: 'Chat Control Dossier', footer: 'independent civic dossier' },
+    de: { title: 'Wählen Sie Ihre Sprache', sub: 'Rechtsstatus, technisches Dossier, Schutzhandbuch und Bürgeraktionen.', brand: 'Chat-Control-Dossier', footer: 'unabhängiges Bürger-Dossier' },
+    it: { title: 'Scegli la tua lingua', sub: 'Stato legale, dossier tecnico, manuale di protezione e azione civica.', brand: 'Dossier Chat Control', footer: 'dossier civico indipendente' },
+    es: { title: 'Elige tu idioma', sub: 'Estado legal, dossier técnico, manual de protección y acción cívica.', brand: 'Dossier Chat Control', footer: 'dossier cívico independiente' }
+  };
 
-<script src="assets/js/lang/fr.js"></script>
-<script src="assets/js/lang/en.js"></script>
-<script src="assets/js/lang/de.js"></script>
-<script src="assets/js/lang/it.js"></script>
-<script src="assets/js/lang/es.js"></script>
-<script src="assets/js/countries-data.js"></script>
-<script src="assets/js/i18n.js"></script>
-<script src="assets/js/render.js"></script>
-<script src="assets/js/main.js"></script>
+  var titleEl = document.getElementById('lang-title');
+  var subEl = document.getElementById('lang-sub');
+  var stampEl = document.getElementById('lang-stamp');
+  var footerEl = document.getElementById('lang-footer-tagline');
+  var grid = document.getElementById('lang-grid');
+  var currentLang = 'en';
+
+  function setText(lang) {
+    var t = TXT[lang];
+    if (!t) return;
+    titleEl.classList.add('fading');
+    subEl.classList.add('fading');
+    setTimeout(function () {
+      titleEl.innerHTML = t.title;
+      subEl.innerHTML = t.sub;
+      stampEl.textContent = t.brand;
+      footerEl.textContent = t.footer;
+      titleEl.classList.remove('fading');
+      subEl.classList.remove('fading');
+    }, 140);
+  }
+
+  function showLang(lang) {
+    if (lang === currentLang) return;
+    currentLang = lang;
+    setText(lang);
+  }
+
+  // Show the default (English) text immediately on load, no fade needed here.
+  titleEl.innerHTML = TXT.en.title;
+  subEl.innerHTML = TXT.en.sub;
+  stampEl.textContent = TXT.en.brand;
+  footerEl.textContent = TXT.en.footer;
+
+  if (grid) {
+    grid.querySelectorAll('.lang-option').forEach(function (opt) {
+      var lang = opt.getAttribute('data-lang');
+      opt.addEventListener('mouseenter', function () { showLang(lang); });
+      opt.addEventListener('focus', function () { showLang(lang); });
+      // Deliberately no mouseleave/blur handler: the preview keeps showing
+      // whichever language box the mouse last passed over.
+    });
+  }
+
+  // Progressive enhancement only: highlight the browser's language as a suggestion.
+  // Every option above is a plain <a href> already, so the page works with JS disabled.
+  try {
+    var supported = ['fr', 'en', 'de', 'it', 'es'];
+    var nav = (navigator.language || 'fr').substring(0, 2).toLowerCase();
+    if (supported.indexOf(nav) !== -1) {
+      var el = document.querySelector('.lang-option[data-lang="' + nav + '"]');
+      if (el) el.classList.add('suggested');
+    }
+  } catch (e) {}
+})();
+</script>
 </body>
 </html>

@@ -105,6 +105,7 @@ window.I18N.en = {
       fpTitle: "The false-positive saturation problem",
       mathP: "Let <span class=\"math\">F<sub>p</sub></span> be the false-positive rate of an automated classifier, applied across the billions of daily messages exchanged in the EU.",
       fpBody: "Even a very small error rate compounds at EU scale. Public reporting and civil-society audits of the existing voluntary regime have repeatedly found a large share of automated flags — commonly cited in the range of roughly half to a large majority, depending on the detection method and reporting platform — to lack any criminal relevance on human review. One widely reported data point: the large majority of reports filed under the voluntary regime came from a single company, and most concerned previously catalogued material rather than newly discovered abuse — raising the question of how much active abuse the system actually catches versus how much ordinary communication it exposes to review.",
+      rangeCaption: "Illustrative range of automated flags found, on human review, to lack criminal relevance — shown as reported across audits, not a single official figure.",
       sourcesNote: "Figures above summarise ranges reported across multiple 2025–2026 audits, parliamentary studies and investigative reporting; exact percentages vary by source and are given as ranges rather than single precise statistics. See the Take Action page for primary sources."
     }
   },
@@ -165,8 +166,8 @@ window.I18N.en = {
     gh: {
       title: "Related fight: the Digital Euro",
       body: "Mass communication scanning isn't the only digital-sovereignty fight in Brussels right now. A companion open-source project documents the risks of the proposed Digital Euro — programmable money, transaction traceability, and the erosion of cash as an anonymous payment option.",
-      note: "Repository not yet published — the link is kept here for when it goes live.",
-      linkLabel: "View on GitHub: NoKs-Git/UEIsBad-DigitalEuro"
+      note: "Independent project, not affiliated with this dossier's author.",
+      linkLabel: "View on GitHub: GHub942/UEIsBad-DigitalEuro"
     },
     resources: {
       title: "Primary sources & further reading",
@@ -184,7 +185,10 @@ window.I18N.en = {
     f2t: "Apple already tried this — and gave up", f2b: "In 2021, Apple announced client-side CSAM scanning for iCloud Photos. It abandoned the plan in December 2022 after security researchers demonstrated the hash-matching system could be tricked and repurposed.",
     f3t: "Survivors are among the loudest critics", f3b: "Groups like MOGiS e.V. and abuse survivors such as Alexander Hanff argue that mass scanning by corporations doesn't stop abuse — and that it puts survivors' own safe communication channels at risk.",
     f4t: "Passed in an emptying chamber", f4b: "The decisive 9 July 2026 vote was scheduled for Parliament's last session before the summer recess, after an emergency procedure pushed it through with barely 48 hours' notice — while many MEPs had already left Strasbourg.",
-    f5t: "A majority actually opposed it", f5b: "276 MEPs voted to keep the revival; 314 voted to reject it. More MEPs wanted it gone than wanted it kept — it survived only because blocking a second-reading item needs an absolute majority of all 720 seats, not just a majority of votes cast."
+    f5t: "A majority actually opposed it", f5b: "276 MEPs voted to keep the revival; 314 voted to reject it. More MEPs wanted it gone than wanted it kept — it survived only because blocking a second-reading item needs an absolute majority of all 720 seats, not just a majority of votes cast.",
+    f6t: "Signal has threatened to leave the EU entirely", f6b: "Signal's president, Meredith Whittaker, has repeatedly said the company would rather withdraw from the European market than build scanning into its encryption: \"a backdoor in one part of a network is a vector into every other part.\"",
+    f7t: "Germany's own police data shows the scale of the false-positive problem", f7b: "German federal police figures for 2024 recorded roughly 99,000 private chats and photos from innocent people wrongly flagged under the existing voluntary scanning regime — a year-on-year increase. In Ireland, only a small fraction of automated reports filed in 2022 turned out to involve illegal content.",
+    f8t: "Over 500 scientists called it \"technically infeasible\"", f8b: "In an open letter, more than 500 cryptographers and security researchers from dozens of countries warned that no machine-learning system can detect unknown CSAM at scale without producing large numbers of errors — and that any backdoor built for one purpose becomes a vulnerability for all."
   },
   map: {
     title: "Where do EU governments stand?",
@@ -213,6 +217,49 @@ window.I18N.en = {
     haveYourSayTitle: "Prefer an official channel?",
     haveYourSayBody: "Have Your Say is the European Commission's own platform for public feedback on legislation in progress — the channel Europe Direct itself points citizens to for making political views on EU matters known.",
     haveYourSayLabel: "Open Have Your Say"
+  },
+  apps: {
+    useTitle: "Recommended apps",
+    avoidTitle: "Apps to avoid",
+    intro: "A quick-reference directory, grouped by category. See the tiers on the left for the reasoning behind each choice.",
+    categories: { messaging: "Messaging", cloud: "Cloud storage", browser: "Browser", mobileos: "Mobile OS", vpn: "VPN", dns: "DNS", appstore: "App store", email: "Email" },
+    use: [
+      { cat: "messaging", name: "Signal", note: "Default choice: open-source, E2EE, minimal metadata." },
+      { cat: "messaging", name: "Session", note: "No phone number required, decentralised routing." },
+      { cat: "messaging", name: "Element / Matrix", note: "Federated, self-hostable, E2EE via Olm/Megolm." },
+      { cat: "cloud", name: "Proton Drive", note: "Zero-knowledge E2EE, Swiss jurisdiction." },
+      { cat: "cloud", name: "Nextcloud (self-hosted)", note: "You control the server and the encryption keys." },
+      { cat: "browser", name: "Mullvad Browser", note: "Built with the Tor Project; resists fingerprinting." },
+      { cat: "browser", name: "Firefox (hardened)", note: "Open-source, configurable, no forced account link." },
+      { cat: "mobileos", name: "GrapheneOS", note: "De-Googled, hardened AOSP fork, Pixel devices only." },
+      { cat: "mobileos", name: "CalyxOS", note: "De-Googled alternative with broader device support." },
+      { cat: "vpn", name: "Mullvad VPN", note: "Anonymous accounts, independently audited, WireGuard." },
+      { cat: "vpn", name: "IVPN", note: "No email required to sign up, strict no-logs, audited." },
+      { cat: "dns", name: "Quad9", note: "Blocks known-malicious domains, no query logging." },
+      { cat: "dns", name: "NextDNS (self-configured)", note: "Custom filtering with logs only you control." },
+      { cat: "appstore", name: "F-Droid", note: "FOSS-only catalogue, reproducible builds." },
+      { cat: "appstore", name: "Accrescent", note: "Security-focused store, minimal permissions by default." },
+      { cat: "email", name: "Proton Mail", note: "E2EE by default, Swiss jurisdiction." },
+      { cat: "email", name: "Tuta (Tutanota)", note: "E2EE by default, fully open-source clients." }
+    ],
+    avoid: [
+      { cat: "messaging", name: "WhatsApp", note: "Meta-owned; in scope for Chat Control 1.0 voluntary scanning." },
+      { cat: "messaging", name: "Facebook Messenger", note: "Same voluntary-scanning exposure as WhatsApp." },
+      { cat: "messaging", name: "SMS / RCS (default)", note: "Carrier-visible, no end-to-end encryption." },
+      { cat: "messaging", name: "Telegram (Cloud Chats)", note: "Not E2EE by default; Secret Chats lack device sync." },
+      { cat: "cloud", name: "iCloud (default backup)", note: "Stores message-key copies unless Advanced Data Protection is on." },
+      { cat: "cloud", name: "Google Drive (default)", note: "Scanned server-side; not end-to-end encrypted." },
+      { cat: "cloud", name: "OneDrive (consumer, default)", note: "Same server-side scanning exposure." },
+      { cat: "browser", name: "Chrome (signed in)", note: "Ties browsing activity to an identity-linked account." },
+      { cat: "browser", name: "Edge (default)", note: "Heavy telemetry tied to a Microsoft account." },
+      { cat: "mobileos", name: "Stock Android + Play Services", note: "Can receive silently-pushed scanning or telemetry modules." },
+      { cat: "mobileos", name: "iOS (for high-threat use)", note: "Closed-source OS layer, limited low-level user control." },
+      { cat: "vpn", name: "Free / unaudited VPN apps", note: "Unverifiable no-logs claims; some monetise user data instead." },
+      { cat: "dns", name: "Default ISP DNS", note: "Query history visible to, and sometimes sold by, your ISP." },
+      { cat: "appstore", name: "Play Store / App Store (sensitive tools)", note: "Distribution can be monitored, geofenced or altered." },
+      { cat: "email", name: "Gmail", note: "Scanned for advertising and abuse-detection by design." },
+      { cat: "email", name: "Outlook.com (free tier)", note: "Similar server-side scanning exposure as Gmail." }
+    ]
   },
   footer: { text: "Technical & civic awareness dossier — last verified 10 July 2026. Shared under Creative Commons CC BY 4.0. Not legal advice." }
 };

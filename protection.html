@@ -3,21 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manuel de protection — Chat Control Dossier</title>
+<title>Protection Manual - ChatControl</title>
 <meta name="description" content="Trois niveaux de sécurité opérationnelle contre le scan des communications, avec une liste noire d'applications à éviter par niveau.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0d1321">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Manuel de protection — Chat Control Dossier">
+<meta property="og:description" content="Trois niveaux de sécurité opérationnelle contre le scan des communications, avec une liste noire d'applications à éviter par niveau.">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Aller au contenu</a>
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a href="index.html" class="brand"><span data-i18n="brand.title">Dossier Chat Control</span><span class="stamp" data-i18n="brand.stamp">EN DIRECT</span></a>
+    <a href="home.html" class="brand"><span data-i18n="brand.title">Dossier Chat Control</span><span class="stamp" data-i18n="brand.stamp">EN DIRECT</span></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
     <nav class="nav-links">
-      <a href="index.html" data-i18n="nav.home">Accueil</a>
+      <a href="home.html" data-i18n="nav.home">Accueil</a>
       <a href="status.html" data-i18n="nav.status">Statut légal</a>
-      <a href="dossier.html" data-i18n="nav.dossier">Dossier technique</a>
+      <a href="technical.html" data-i18n="nav.dossier">Dossier technique</a>
       <a href="protection.html" data-i18n="nav.protection">Manuel de protection</a>
-      <a href="act.html" data-i18n="nav.act">Passer à l'action</a>
+      <a href="take-action.html" data-i18n="nav.act">Passer à l'action</a>
     </nav>
     <div class="lang-switch">
       <button class="lang-btn" data-lang="fr">FR</button>
@@ -29,13 +36,16 @@
   </div>
 </header>
 
-<div class="container page-wrap">
+<div class="container page-wrap" id="main">
 
   <section class="hero" style="padding:44px 40px;">
     <span class="eyebrow" data-i18n="protection.eyebrow">Sécurité opérationnelle</span>
     <h1 style="font-size:clamp(1.6rem,3vw,2.4rem);" data-i18n="protection.h1">Un manuel de protection précis</h1>
     <p class="lead" data-i18n="protection.lead">…</p>
   </section>
+
+  <div class="protection-layout">
+  <div class="protection-main">
 
   <div class="card reveal">
     <h2><span class="tag" data-i18n="protection.A.tag">Niveau A</span></h2>
@@ -75,6 +85,22 @@
       <p data-i18n="protection.C.i3body" style="margin-bottom:0;">…</p>
       <div class="blacklist-box" data-render="blacklist-C"></div>
     </div>
+  </div>
+
+  </div>
+
+  <aside class="apps-sidebar">
+    <div class="apps-panel use-panel reveal">
+      <h3 data-i18n="apps.useTitle">Applications recommandées</h3>
+      <p class="apps-intro" data-i18n="apps.intro">…</p>
+      <div data-render="apps-use"></div>
+    </div>
+    <div class="apps-panel avoid-panel reveal">
+      <h3 data-i18n="apps.avoidTitle">Applications à éviter</h3>
+      <div data-render="apps-avoid"></div>
+    </div>
+  </aside>
+
   </div>
 
 </div>

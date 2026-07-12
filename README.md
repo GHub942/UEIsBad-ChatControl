@@ -1,59 +1,81 @@
-# 🛡️ Protection de la Vie Privée & Contre Chat Control
+# Chat Control Dossier
 
-Ce dépôt centralise les ressources fondamentales, les analyses législatives et les contre-mesures techniques face au projet de règlement européen **Chat Control** (CSAM). L'objectif est de fournir un arsenal complet de survie numérique face aux menaces de surveillance de masse et de scan automatisé côté client.
+A multi-page, multilingual (FR / EN / DE / IT / ES) static site tracking the legal status
+of the EU's "Chat Control" files, how the underlying scanning technology works, a tiered
+operational-security manual (with a categorized "use / avoid" app directory), an interactive
+map of member-state positions, and ways to take action.
 
----
+## Structure
 
-## 🧐 Qu'est-ce que "Chat Control" ?
+```
+index.html          Landing page — language chooser, shown on first arrival (no JS required)
+home.html           Home — status snapshot, 9 July 2026 vote scoreboard, "did you know" facts
+status.html         Legal status — Chat Control 1.0 vs 2.0, full timeline, real EU map (D3)
+technical.html       Technical dossier — detection methods, false-positive statistics
+protection.html      Protection manual — 3 security tiers + a categorized "use / avoid" app sidebar
+take-action.html      Take action — petitions, one-click MEP email tool, related projects
+404.html             Custom not-found page
 
-**Chat Control** (officiellement *Règlement visant à prévenir et à combattre les abus sexuels sur les enfants*) est une proposition législative de la Commission européenne. Sous couvert d'intentions louables, ce texte ambitionne d'imposer aux fournisseurs de services (Signal, WhatsApp, Proton, etc.) d'**analyser massivement, de manière automatisée et préventive** l'intégralité des messages, images et données des citoyens, avant même qu'ils ne soient chiffrés.
+assets/css/style.css         Design system (single stylesheet, no build step)
+assets/js/i18n.js            Translation engine + cross-page language persistence (URL ?lang= param)
+assets/js/render.js          Renders data-driven blocks: facts, timeline, contact tool, blacklists, app directory
+assets/js/eumap.js           Real geographic EU map (D3 + topojson), with schematic-hexmap fallback
+assets/js/main.js            Scroll-reveal / redaction-reveal animations, mobile nav, active-nav highlighting
+assets/js/countries-data.js  ISO numeric codes + Council-position data + fallback grid layout
+assets/js/lang/*.js          One file per language, each populating window.I18N.<lang>
+```
 
-### Les Dangers Majeurs :
-* **Client-Side Scanning (Scan côté client) :** Cette méthode brise le chiffrement de bout en bout (E2EE) à la source en installant un module d'interception directement sur l'appareil de l'utilisateur.
-* **Surveillance de masse indiscriminée :** Chaque smartphone et ordinateur se transforme en un outil d'espionnage étatique automatisé, sans suspicion préalable ni mandat judiciaire.
-* **Faux positifs destructeurs :** Les algorithmes d'IA génèrent un taux d'erreur massif (jusqu'à 90% de faux positifs), exposant des communications privées ou familiales légitimes à des enquêtes policières.
+## Language handling
 
----
+- **First visit**: `index.html` is a standalone language-picker (plain links, no JS required to
+  function) that sends the visitor to `home.html?lang=xx`.
+- **Persistence across pages**: the chosen language is written both to `localStorage` and to a
+  `?lang=xx` URL parameter, and `i18n.js` automatically rewrites every internal link on the page
+  to carry that parameter forward. This makes the language persist when browsing page to page
+  even when the site is opened directly from disk (`file://`), where `localStorage` is isolated
+  per file in some browsers.
 
-## 📊 Historique des Refus & Statut Actuel (Mise à jour 2026)
+## The EU map
 
-Grâce à la mobilisation constante des ONG, des experts en cybersécurité et d'un bloc d'États membres, le texte a subi de nombreux revers et demeure dans une impasse politique majeure.
+`status.html` renders a real geographic map using **D3** (`d3-geo`) and **topojson-client**,
+loading the small, ISC-licensed `world-atlas` TopoJSON dataset (derived from Natural Earth) from
+a CDN at runtime — see the `<script>` tags at the bottom of `status.html`. Countries are matched
+by ISO-3166-1 numeric code (`assets/js/countries-data.js`) and coloured by their most recently
+published Council position. If the CDN or the library fails to load (offline preview, blocked
+network), it automatically falls back to the schematic grid map — no broken page either way.
 
-| Période | Événement / Statut | Facteurs et Raisons du Refus |
-| :--- | :--- | :--- |
-| **2022 - 2023** | Proposition initiale de la Commission européenne. | Rejet immédiat par la communauté technique et les vagues de pétitions pour violation flagrante de la Charte des droits fondamentaux de l'UE. |
-| **Fin 2023** | Position du Parlement européen. | Modification radicale du texte pour exclure explicitement le chiffrement de bout en bout afin de protéger les journalistes et les lanceurs d'alerte. |
-| **2024 - 2025** | Tentatives de vote au Conseil de l'UE (sous le nom de "Modération de détection"). | **Échecs successifs.** Consolidation d'une minorité de blocage (menée par l'Allemagne, l'Autriche, la Pologne et les Pays-Bas) refusant tout compromis sur le chiffrement. |
-| **Actuel (2026)** | **Impasse et négociations suspendues.** | Le texte est périodiquement réintroduit avec de légères modifications sémantiques, mais il manque toujours de majorité qualifiée au Conseil. |
+## The app directory (protection.html)
 
-### Failles fondamentales relevées par les experts :
-1. **Erreurs algorithmiques :** Plus de 90% des signalements automatisés par l'IA ne reposent sur aucun fondement criminel (ex: photos de plage ou de bain d'enfants).
-2. **Criminalisation des mineurs :** Près de 40% des enquêtes visent en réalité des adolescents pratiquant le "sexting" consenti, pénalisant les populations à protéger.
-3. **Rupture des espaces thérapeutiques :** Suppression de la confidentialité indispensable aux lignes d'écoute, psychologues et avocats.
+The sidebar lists common apps to use / avoid, grouped into 8 categories (messaging, cloud
+storage, browser, mobile OS, VPN, DNS, app store, email), each with its own colour. Badges show
+a plain initial letter rather than real brand logos — actual trademarked app icons aren't
+reproduced here for IP reasons; recolour `--cat-*` variables in `style.css` or swap in your own
+icon set if you have rights to do so.
 
----
+## Why plain `<script>` tags instead of `fetch()` for translations
 
-## 💡 Manuel de Survie Numérique (3 Variantes de Protection)
+Translation dictionaries are loaded as JavaScript files rather than JSON fetched at
+runtime, so the site works identically whether it's served by GitHub Pages or opened
+directly from disk (`file://`), which would otherwise hit CORS restrictions.
 
-### 🚀 Variante A : Protection Simple (Hygiène standard)
-* **Messagerie :** Utilisez exclusivement **Signal** pour vos communications quotidiennes (open-source, chiffré, sans stockage de métadonnées). Activez les messages éphémères.
-* **Réseau :** Modifiez les serveurs DNS par défaut de vos appareils pour un résolveur respectueux de la vie privée (ex: **Quad9** `9.9.9.9` ou Mullvad DNS).
+## Updating
 
-### 🛡️ Variante B : Protection Correcte (Confidentialité Avancée)
-* **Messagerie :** Utilisez des solutions décentralisées sans identifiant civil comme **Session** (aucun numéro de téléphone requis) ou **Matrix (Element)**.
-* **Cloud & Sauvegardes :** Désactivez les sauvegardes cloud commerciales automatiques. Activez la protection avancée des données (chiffrement de bout en bout) ou migrez vers Proton Drive.
-* **Réseau :** Utilisez en permanence un VPN "No-Log" éprouvé opérant hors juridiction des 14-Eyes (ex: **Mullvad VPN** ou ProtonVPN).
+- **Language text**: edit the matching key in each `assets/js/lang/xx.js` file — keys
+  are the same across all five languages.
+- **Timeline / facts / petitions / app directory**: edit the arrays inside each language file
+  (`status.timeline.rows`, `facts`, `act.p1`–`p4`, `protection.*.bl`, `apps.use` / `apps.avoid`).
+- **Country positions on the map**: edit `assets/js/countries-data.js` (not translated,
+  shared across languages) — positions should be re-checked periodically, as Council
+  positions shift.
 
-### ☣️ Variante C : Protection Ultime (Souveraineté Totale / Parano)
-* **Système d'Exploitation :** Bannissez Android et iOS commerciaux. Flashez votre smartphone avec un système d'exploitation libre et ultra-sécurisé au niveau du noyau comme **GrapheneOS** (ou CalyxOS), totalement vierge de toute télémétrie ou composant Google.
-* **Flux & Routage :** Routez l'intégralité de votre trafic réseau à travers le réseau anonyme décentralisé **Tor** (via Orbot).
-* **Sécurité Logicielle :** Utilisez uniquement des applications open-source auditées provenant du catalogue *F-Droid*.
+## Deploying to GitHub Pages
 
----
+No build step. Push this folder to a repository and enable Pages on the `main`
+branch (root), or drag-and-drop the contents into any static host. Update `sitemap.xml`
+with your real Pages URL once deployed.
 
-## 🌍 Ressources & Activisme
-* [La Quadrature du Net (LQDN)](https://www.laquadrature.net/) — Actions et analyses juridiques en France.
-* [ChatControl.eu](https://chatcontrol.eu/) — Centralisation des documents et suivi de la législation par Patrick Breyer.
-* [EFF (Electronic Frontier Foundation)](https://www.eff.org/) — Défense internationale des libertés numériques.
+## Disclaimer
 
-*Contenu partagé sous licence libre Creative Commons CC BY 4.0.*
+This is a civic-awareness dossier, not legal advice. Facts were verified as of
+10 July 2026; the underlying legislative files are still moving — check the
+linked primary sources for anything time-sensitive.

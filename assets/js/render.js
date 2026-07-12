@@ -18,7 +18,7 @@
     if (!host) return;
     var f = t(lang, 'facts');
     if (!f) return;
-    var items = [[f.f1t, f.f1b], [f.f2t, f.f2b], [f.f3t, f.f3b], [f.f4t, f.f4b], [f.f5t, f.f5b]];
+    var items = [[f.f1t, f.f1b], [f.f2t, f.f2b], [f.f3t, f.f3b], [f.f4t, f.f4b], [f.f5t, f.f5b], [f.f6t, f.f6b], [f.f7t, f.f7b], [f.f8t, f.f8b]];
     host.innerHTML = items.map(function (it, i) {
       return '<div class="fact-card reveal"><span class="fact-icon">' + (i + 1).toString().padStart(2, '0') + '</span><h4>' + esc(it[0]) + '</h4><p>' + esc(it[1]) + '</p></div>';
     }).join('');
@@ -37,30 +37,48 @@
       '<table class="timeline"><thead><tr><th>' + esc(tl.th1) + '</th><th>' + esc(tl.th2) + '</th><th>' + esc(tl.th3) + '</th><th>' + esc(tl.th4) + '</th></tr></thead><tbody>' + rows + '</tbody></table>';
   }
 
-  /* ---------- Europe hexmap ---------- */
+  /* ---------- Europe map: real geographic map (eumap.js) with grid fallback ---------- */
   function renderMap(lang) {
+    if (window.CC_renderEuroMap) { window.CC_renderEuroMap(lang); return; }
+    renderMapGridFallback(lang);
+  }
+
+  function renderMapGridFallback(lang) {
     var host = document.querySelector('[data-render="hexmap"]');
     var legendHost = document.querySelector('[data-render="map-legend"]');
     if (!host || !window.CC_COUNTRIES) return;
     var countryNames = t(lang, 'countries') || {};
     var m = t(lang, 'map') || {};
 
-    host.innerHTML = window.CC_COUNTRIES.map(function (c) {
+    var tiles = window.CC_COUNTRIES.map(function (c) {
       var name = countryNames[c.code] || c.code;
-      return '<div class="hex-tile" data-status="' + c.status + '" style="grid-column:' + c.col + ';grid-row:' + c.row + '">' +
+      return '<div class="hex-tile" data-status="' + c.status + '" data-code="' + c.code + '" style="grid-column:' + c.col + ';grid-row:' + c.row + '">' +
         c.code + '<span class="hex-tip">' + esc(name) + '</span></div>';
     }).join('');
+    host.innerHTML = '<div class="hexmap-grid-wrap"><div class="hexmap-grid">' + tiles + '</div></div>';
 
     if (legendHost) {
       var groups = { against: [], for: [], undecided: [] };
       window.CC_COUNTRIES.forEach(function (c) { groups[c.status].push(countryNames[c.code] || c.code); });
       function group(status, label) {
-        return '<div class="map-legend-group"><div class="map-legend-head"><span class="map-legend-dot ' + status + '"></span>' + esc(label) + '</div><div class="map-legend-list">' + groups[status].sort().join(' · ') + '</div></div>';
+        return '<div class="map-legend-group" data-status="' + status + '"><div class="map-legend-head"><span class="map-legend-dot ' + status + '"></span>' + esc(label) + '</div><div class="map-legend-list">' + groups[status].sort().join(' · ') + '</div></div>';
       }
-      legendHost.innerHTML =
-        group('against', m.legendAgainst) +
-        group('for', m.legendFor) +
-        group('undecided', m.legendUndecided);
+      legendHost.innerHTML = group('against', m.legendAgainst) + group('for', m.legendFor) + group('undecided', m.legendUndecided);
+
+      var activeFilter = null;
+      legendHost.querySelectorAll('.map-legend-group').forEach(function (g) {
+        g.addEventListener('click', function () {
+          var status = g.getAttribute('data-status');
+          activeFilter = (activeFilter === status) ? null : status;
+          legendHost.querySelectorAll('.map-legend-group').forEach(function (x) {
+            x.classList.toggle('active', activeFilter && x.getAttribute('data-status') === activeFilter);
+          });
+          host.querySelectorAll('.hex-tile').forEach(function (tile) {
+            var match = !activeFilter || tile.getAttribute('data-status') === activeFilter;
+            tile.classList.toggle('dimmed', !match);
+          });
+        });
+      });
     }
   }
 
@@ -132,6 +150,37 @@
     });
   }
 
+  /* ---------- Apps directory (protection page sidebar) ---------- */
+  var CAT_ORDER = ['messaging', 'cloud', 'browser', 'mobileos', 'vpn', 'dns', 'appstore', 'email'];
+
+  function buildAppList(items, categories) {
+    var byCat = {};
+    items.forEach(function (it) { (byCat[it.cat] = byCat[it.cat] || []).push(it); });
+    return CAT_ORDER.filter(function (c) { return byCat[c]; }).map(function (cat) {
+      var label = categories[cat] || cat;
+      var rows = byCat[cat].map(function (it) {
+        var initial = it.name.trim().charAt(0).toUpperCase();
+        return '<div class="app-item">' +
+          '<span class="app-badge" style="background:var(--cat-' + cat + ')">' + esc(initial) + '</span>' +
+          '<span><span class="app-name">' + esc(it.name) + '</span><span class="app-note">' + esc(it.note) + '</span></span>' +
+          '</div>';
+      }).join('');
+      return '<div class="apps-cat-group">' +
+        '<span class="apps-cat-label" style="background:var(--cat-' + cat + ')"><span class="dot"></span>' + esc(label) + '</span>' +
+        rows + '</div>';
+    }).join('');
+  }
+
+  function renderAppsDirectory(lang) {
+    var useHost = document.querySelector('[data-render="apps-use"]');
+    var avoidHost = document.querySelector('[data-render="apps-avoid"]');
+    if (!useHost && !avoidHost) return;
+    var apps = t(lang, 'apps');
+    if (!apps) return;
+    if (useHost) useHost.innerHTML = buildAppList(apps.use, apps.categories);
+    if (avoidHost) avoidHost.innerHTML = buildAppList(apps.avoid, apps.categories);
+  }
+
   function renderAll() {
     var lang = window.CC_I18N ? window.CC_I18N.detectLang() : 'fr';
     renderFacts(lang);
@@ -139,6 +188,7 @@
     renderMap(lang);
     renderContact(lang);
     renderBlacklists(lang);
+    renderAppsDirectory(lang);
     if (window.CC_reobserve) window.CC_reobserve();
   }
 
@@ -149,6 +199,7 @@
     renderMap(lang);
     renderContact(lang);
     renderBlacklists(lang);
+    renderAppsDirectory(lang);
     if (window.CC_reobserve) window.CC_reobserve();
   });
 

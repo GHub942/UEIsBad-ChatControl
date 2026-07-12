@@ -3,21 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Statut légal — Chat Control Dossier</title>
+<title>Legal State - ChatControl</title>
 <meta name="description" content="Chat Control 1.0 vs 2.0 : chronologie complète, mécanisme du vote du 9 juillet 2026, et carte des positions des États membres.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0d1321">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Statut légal — Chat Control Dossier">
+<meta property="og:description" content="Chat Control 1.0 vs 2.0 : chronologie complète, mécanisme du vote du 9 juillet 2026, et carte des positions des États membres.">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Aller au contenu</a>
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a href="index.html" class="brand"><span data-i18n="brand.title">Dossier Chat Control</span><span class="stamp" data-i18n="brand.stamp">EN DIRECT</span></a>
+    <a href="home.html" class="brand"><span data-i18n="brand.title">Dossier Chat Control</span><span class="stamp" data-i18n="brand.stamp">EN DIRECT</span></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
     <nav class="nav-links">
-      <a href="index.html" data-i18n="nav.home">Accueil</a>
+      <a href="home.html" data-i18n="nav.home">Accueil</a>
       <a href="status.html" data-i18n="nav.status">Statut légal</a>
-      <a href="dossier.html" data-i18n="nav.dossier">Dossier technique</a>
+      <a href="technical.html" data-i18n="nav.dossier">Dossier technique</a>
       <a href="protection.html" data-i18n="nav.protection">Manuel de protection</a>
-      <a href="act.html" data-i18n="nav.act">Passer à l'action</a>
+      <a href="take-action.html" data-i18n="nav.act">Passer à l'action</a>
     </nav>
     <div class="lang-switch">
       <button class="lang-btn" data-lang="fr">FR</button>
@@ -29,7 +36,7 @@
   </div>
 </header>
 
-<div class="container page-wrap">
+<div class="container page-wrap" id="main">
 
   <section class="hero" style="padding:44px 40px;">
     <span class="eyebrow" data-i18n="status.eyebrow">Statut légal — mis à jour le 10 juillet 2026</span>
@@ -67,7 +74,7 @@
     <h2><span class="tag">D</span> <span data-i18n="map.title">Où en sont les gouvernements de l'UE ?</span></h2>
     <p data-i18n="map.intro">…</p>
     <div class="hexmap-wrap">
-      <div class="hexmap-grid" data-render="hexmap"></div>
+      <div data-render="hexmap"></div>
       <div class="map-legend" data-render="map-legend"></div>
     </div>
     <p class="map-note" data-i18n="map.note">…</p>
@@ -100,6 +107,9 @@
 <script src="assets/js/lang/es.js"></script>
 <script src="assets/js/countries-data.js"></script>
 <script src="assets/js/i18n.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="assets/js/eumap.js"></script>
 <script src="assets/js/render.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
