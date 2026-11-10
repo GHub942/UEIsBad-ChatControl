@@ -1,81 +1,48 @@
-# Chat Control Dossier
+# UEIsBad-ChatControl
 
-A multi-page, multilingual (FR / EN / DE / IT / ES) static site tracking the legal status
-of the EU's "Chat Control" files, how the underlying scanning technology works, a tiered
-operational-security manual (with a categorized "use / avoid" app directory), an interactive
-map of member-state positions, and ways to take action.
+> **This repository is frozen.** The site is complete and will not receive
+> further modifications. Facts were last verified in November 2026.
 
-## Structure
+A single self-contained HTML page — the **Chat Control Dossier** — a civic
+and technical awareness dossier on the EU's "Chat Control" files. Available
+in English, French, German, Italian and Spanish via an in-page language
+switcher. Everything is in one file, with no build step.
 
-```
-index.html          Landing page — language chooser, shown on first arrival (no JS required)
-home.html           Home — status snapshot, 9 July 2026 vote scoreboard, "did you know" facts
-status.html         Legal status — Chat Control 1.0 vs 2.0, full timeline, real EU map (D3)
-technical.html       Technical dossier — detection methods, false-positive statistics
-protection.html      Protection manual — 3 security tiers + a categorized "use / avoid" app sidebar
-take-action.html      Take action — petitions, one-click MEP email tool, related projects
-404.html             Custom not-found page
+## What's inside
 
-assets/css/style.css         Design system (single stylesheet, no build step)
-assets/js/i18n.js            Translation engine + cross-page language persistence (URL ?lang= param)
-assets/js/render.js          Renders data-driven blocks: facts, timeline, contact tool, blacklists, app directory
-assets/js/eumap.js           Real geographic EU map (D3 + topojson), with schematic-hexmap fallback
-assets/js/main.js            Scroll-reveal / redaction-reveal animations, mobile nav, active-nav highlighting
-assets/js/countries-data.js  ISO numeric codes + Council-position data + fallback grid layout
-assets/js/lang/*.js          One file per language, each populating window.I18N.<lang>
-```
+- **Overview** — what actually happened on 9 July 2026, the plenary vote
+  scoreboard, and eight "did you know" fact cards.
+- **Legal status** — the two-track breakdown (Chat Control 1.0 in force as
+  Regulation (EU) 2026/1881 until 3 April 2028 vs Chat Control 2.0 still in
+  trilogue), the full 2021–2026 timeline, and a geographic map of
+  member-state positions in Council negotiations.
+- **Technical dossier** — how client-side scanning works (hash matching, AI
+  computer vision, grooming detection) and the false-positive statistics.
+- **Protection manual** — three tiers of operational security with a
+  categorized "use / avoid" app directory.
+- **Take action** — a ready-made MEP contact message, petitions, and links
+  to primary sources and allied projects.
 
-## Language handling
+## Usage
 
-- **First visit**: `index.html` is a standalone language-picker (plain links, no JS required to
-  function) that sends the visitor to `home.html?lang=xx`.
-- **Persistence across pages**: the chosen language is written both to `localStorage` and to a
-  `?lang=xx` URL parameter, and `i18n.js` automatically rewrites every internal link on the page
-  to carry that parameter forward. This makes the language persist when browsing page to page
-  even when the site is opened directly from disk (`file://`), where `localStorage` is isolated
-  per file in some browsers.
+This is a static, single-file site: open `index.html` directly in a browser,
+or host it on any static file host (GitHub Pages, Netlify, a plain web
+server). There is no server-side component and no build process. Append
+`?lang=fr` (or `de`, `it`, `es`) to the URL to force a language; the choice
+is also remembered via `localStorage`.
 
-## The EU map
+The EU positions map is a self-contained schematic grid rendered
+purely with HTML/CSS — the whole site works fully offline with zero
+external dependencies.
 
-`status.html` renders a real geographic map using **D3** (`d3-geo`) and **topojson-client**,
-loading the small, ISC-licensed `world-atlas` TopoJSON dataset (derived from Natural Earth) from
-a CDN at runtime — see the `<script>` tags at the bottom of `status.html`. Countries are matched
-by ISO-3166-1 numeric code (`assets/js/countries-data.js`) and coloured by their most recently
-published Council position. If the CDN or the library fails to load (offline preview, blocked
-network), it automatically falls back to the schematic grid map — no broken page either way.
+## Data & accuracy
 
-## The app directory (protection.html)
+Vote counts, dates, petition signatures, and Council positions are editorial
+and were accurate as of November 2026, the date noted in the page itself.
+Legislative files are still moving — always check the linked primary sources
+for anything time-sensitive. This is a civic-awareness dossier, not legal
+advice.
 
-The sidebar lists common apps to use / avoid, grouped into 8 categories (messaging, cloud
-storage, browser, mobile OS, VPN, DNS, app store, email), each with its own colour. Badges show
-a plain initial letter rather than real brand logos — actual trademarked app icons aren't
-reproduced here for IP reasons; recolour `--cat-*` variables in `style.css` or swap in your own
-icon set if you have rights to do so.
+## License
 
-## Why plain `<script>` tags instead of `fetch()` for translations
-
-Translation dictionaries are loaded as JavaScript files rather than JSON fetched at
-runtime, so the site works identically whether it's served by GitHub Pages or opened
-directly from disk (`file://`), which would otherwise hit CORS restrictions.
-
-## Updating
-
-- **Language text**: edit the matching key in each `assets/js/lang/xx.js` file — keys
-  are the same across all five languages.
-- **Timeline / facts / petitions / app directory**: edit the arrays inside each language file
-  (`status.timeline.rows`, `facts`, `act.p1`–`p4`, `protection.*.bl`, `apps.use` / `apps.avoid`).
-- **Country positions on the map**: edit `assets/js/countries-data.js` (not translated,
-  shared across languages) — positions should be re-checked periodically, as Council
-  positions shift.
-
-## Deploying to GitHub Pages
-
-No build step. Push this folder to a repository and enable Pages on the `main`
-branch (root), or drag-and-drop the contents into any static host. Update `sitemap.xml`
-with your real Pages URL once deployed.
-
-## Disclaimer
-
-This is a civic-awareness dossier, not legal advice. Facts were verified as of
-10 July 2026; the underlying legislative files are still moving — check the
-linked primary sources for anything time-sensitive.
+MIT — see [LICENSE.md](LICENSE.md).
